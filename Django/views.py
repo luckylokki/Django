@@ -17,8 +17,8 @@ def password_gen(request, length: int) -> HttpResponse:
 
 def check_password(request, password: str) -> HttpResponse:
     special_characters = '!@#$%&()-_[]{};:"./<>?'
-    if any(map(lambda x: x in password, special_characters)):
-        return HttpResponse('Password have denied characters')
+    if any(map(lambda x: x in password, special_characters)) or len(password) != 8:
+        return HttpResponse('Password have denied characters or length')
     else:
         return HttpResponse('Password is ok!')
 
